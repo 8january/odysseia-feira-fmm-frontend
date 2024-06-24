@@ -5,8 +5,6 @@ import { TimerSettings } from 'react-timer-hook'
 
 import { questions } from './inMemory/data'
 
-import axios from 'axios'
-
 import './App.css'
 
 function App() {
@@ -24,7 +22,7 @@ function App() {
   const nameRef = useRef<any>('')
   const correctAnswersRef = useRef<number>(0)
 
-  const { totalSeconds, seconds, minutes, start, pause, resume } = useTimer(timer)
+  const { seconds, minutes, start } = useTimer(timer)
 
   console.log(seconds, minutes)
 
