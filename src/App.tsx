@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useRef } from 'react'
 import { useTimer } from 'react-timer-hook'
 import { TimerSettings } from 'react-timer-hook'
@@ -23,8 +24,6 @@ function App() {
   const nameRef = useRef<any>('')
   const correctAnswersRef = useRef<number>(0)
 
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { totalSeconds, seconds, minutes, start, pause, resume } = useTimer(timer)
 
   console.log(seconds, minutes)
