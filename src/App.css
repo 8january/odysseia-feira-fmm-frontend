@@ -1,11 +1,11 @@
 @font-face {
   font-family: reef;
-  src: url("src/fonts/Reef.otf");
+  src: url("/fonts/Reef.otf");
 }
 
 @font-face {
   font-family: reef-bold;
-  src: url("src/fonts/reef-bold.ttf");
+  src: url("/fonts/reef-bold.ttf");
 }
 
 .app {

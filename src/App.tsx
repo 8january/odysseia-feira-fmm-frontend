@@ -67,8 +67,8 @@ function App() {
     return (<>
       <div className='question-container'>
         <div className='question-image'>
-          <img src={`/public/il-${q % 3 + 1}.svg`} alt='question illustration' id='rs'/>
-          <img src={`/public/il-${q % 3 + 1}-mb.svg`} alt='question illustration' id='mb'/>
+          <img src={`/il-${q % 3 + 1}.svg`} alt='question illustration' id='rs'/>
+          <img src={`/il-${q % 3 + 1}-mb.svg`} alt='question illustration' id='mb'/>
         </div>
         <div className='question-content'>
           <h3> Questão {q + 1} </h3>
