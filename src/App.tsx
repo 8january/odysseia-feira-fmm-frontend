@@ -12,7 +12,7 @@ function App() {
   const time = new Date()
   time.setSeconds(time.getSeconds() + (25 * 60) - 1)
 
-  let timer: TimerSettings = {
+  const timer: TimerSettings = {
     autoStart: false,
     expiryTimestamp: time,
     onExpire: () => { console.log('expired!') }
@@ -24,6 +24,7 @@ function App() {
   const correctAnswersRef = useRef<number>(0)
 
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { totalSeconds, seconds, minutes, start, pause, resume } = useTimer(timer)
 
   console.log(seconds, minutes)
