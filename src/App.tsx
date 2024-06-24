@@ -19,6 +19,7 @@ function App() {
 
   const [step, setStep] = useState(0)
   const [q, setQ] = useState(0)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const nameRef = useRef<any>('')
   const correctAnswersRef = useRef<number>(0)
 
