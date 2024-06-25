@@ -7,8 +7,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useState, useRef } from 'react'
 import { NavLink } from "react-router-dom";
 
-import { useTimer, useStopwatch } from 'react-timer-hook'
-import { TimerSettings } from 'react-timer-hook'
+import { useStopwatch } from 'react-timer-hook'
 
 import { questions } from './inMemory/data'
 
@@ -16,54 +15,40 @@ import axios from 'axios';
 
 import './App.css'
 
-
-
 function App() {
   const time = new Date()
   time.setSeconds(time.getSeconds() + (25 * 60))
-
-  const timer: TimerSettings = {
-    autoStart: false,
-    expiryTimestamp: time,
-    onExpire: () => { console.log('expired!') }
-  };
 
   const [step, setStep] = useState(0)
   const [q, setQ] = useState(0)
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const nameRef = useRef<any>('')
+  const [name, setName] = useState('user')
 
   const [correct, setCorrect] = useState(0)
-  const { seconds: timerSeconds, minutes: timerMinutes, start: timerStart, pause: timerPause } = useTimer(timer)
   const { totalSeconds, seconds: watchSeconds, minutes: watchMinutes, start: watchStart, pause: watchPause } = useStopwatch({ autoStart: false })
 
-  console.log(timerSeconds, timerMinutes)
-
-  const sendData = async () => {
+  async function sendData() {
     const user_data = {
-      name: nameRef?.current?.value,
-      correctAnswers: correct,
+      name: name,
+      correct: correct,
       time: totalSeconds,
+      minutes: watchMinutes,
+      seconds: watchSeconds
     };
 
     try {
-
-      const response = await axios.get("https://5000-idx-odysseia-feira-fmm-1719166986551.cluster-vpxjqdstfzgs6qeiaf7rdlsqrc.cloudworkstations.dev/", {
-        method: 'get',
-        withCredentials: true
-      })
-      
-      console.log(response.data)
-      const { data } = await axios.post("https://5000-idx-odysseia-feira-fmm-1719166986551.cluster-vpxjqdstfzgs6qeiaf7rdlsqrc.cloudworkstations.dev/user", user_data, {
+      const { data } = await axios.post("https://odysseia-feira-fmm-backend.onrender.com/user", user_data, {
         method: 'POST',
-        withCredentials: true
+        withCredentials: true,
       })
       console.log(data);
     } catch (error) {
       console.error(error);
     }
   };
+
   const user = () => {
 
     return (<>
@@ -71,7 +56,9 @@ function App() {
         <h2> Informe seu nome para começar! </h2>
         <input type='text' max={100} ref={nameRef} />
         <button onClick={() => {
-          setStep(1)
+          setStep(2)
+          watchStart()
+          setName(nameRef?.current?.value)
           console.log(nameRef.current.value)
         }}> Próximo <MdOutlineKeyboardArrowRight /> </button>
       </div>
@@ -82,16 +69,14 @@ function App() {
     return (<>
       <h2>Vamos testar seus conhecimentos em história!</h2>
       <button onClick={() => {
-        setStep(2)
-        timerStart()
-        watchStart()
+        setStep(1)
       }}> Começar </button>
     </>)
   }
 
   const info = () => {
     return (<>
-      <p id='timer'><TfiAlarmClock />{timerMinutes}:{timerSeconds < 10 ? "0" : ""}{timerSeconds}</p>
+      <p id='timer'><TfiAlarmClock />{watchMinutes}:{watchSeconds < 10 ? "0" : ""}{watchSeconds}</p>
       <div id='info'><p>Serão 5 questão na atividade valendo  <strong> 15 pontos cada questão acertada! </strong>
         Quando acumular o <strong>máximo de pontos</strong> poderá receber uma lembrancinha exclusiva para os ganhadores.</p>
         <button onClick={() => { setStep(3) }} id='iniciar'>Iniciar <MdOutlineKeyboardArrowRight /> </button>
@@ -102,14 +87,14 @@ function App() {
   const question = () => {
 
     if (q == 5) {
-      timerPause()
       watchPause()
       setStep(4)
-      sendData()
     }
 
     return (<>
+
       <div className='question-container'>
+        <p id='timer-2'><TfiAlarmClock />{watchMinutes}:{watchSeconds < 10 ? "0" : ""}{watchSeconds}</p>
         <div className='question-image'>
           <img src={`/il-${q % 3 + 1}.svg`} alt='question illustration' id='rs' />
           <img src={`/il-${q % 3 + 1}-mb.svg`} alt='question illustration' id='mb' />
@@ -161,19 +146,20 @@ function App() {
         <h2>Pontuação:</h2>
         <p id='points-p'><span id='points-f'>{(correct * 15)}</span>/75 pts.</p>
         <p id='time-p'>Tempo: {watchMinutes < 10 ? "0" : ""}{watchMinutes}:{watchSeconds < 10 ? "0" : ""}{watchSeconds}</p>
-        <NavLink to={"/rank"}> Próximo <MdOutlineKeyboardArrowRight /> </NavLink>
+        <NavLink to={"/rank"} onClick={sendData}> Finalizar <MdOutlineKeyboardArrowRight /> </NavLink>
       </div>
     </>)
   }
 
-  const steps = [user, init, info, question, result]
+  const steps = [init, user, info, question, result]
 
   return (
     <>
       <img src='/a-1.svg' id='a-1' />
       <img src='/a-2.svg' id='a-3' />
       <img src='/a-3.svg' id='a-4' />
-      <img src='/a-4.svg' id='a-2' />
+
+      {step == 4 ? <img src='/il-x.svg' id='a-2' /> : <img src='/a-4.svg' id='a-2' />}
       <div className={step === 4 ? 'points' : 'app'}>
         {steps[step]()}
       </div>
