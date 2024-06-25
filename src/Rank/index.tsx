@@ -26,7 +26,7 @@ export const Rank = () => {
 
         //https://odysseia-feira-fmm-backend-production.up.railway.app/rank
         //https://876a-2804-18-688d-c55a-246c-df23-efca-8fc4.ngrok-free.app
-        const { data } = await axios.get('https://b272-2804-18-688d-c55a-246c-df23-efca-8fc4.ngrok-free.app/rank', {
+        const { data } = await axios.get('https://odysseia-feira-fmm-backend-production.up.railway.app/user', {
           method: 'GET',
           withCredentials: true,
         })
