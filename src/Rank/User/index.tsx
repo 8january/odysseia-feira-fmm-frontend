@@ -1,9 +1,13 @@
 import styles from "./index.module.css"
-type User = {
-    name: string
-    position: number
+type UserT = {
+  name: string
+  correct: number
+  time: number
+  minutes: number
+  seconds: number
+  position: number
 }
-export const User = ({user}: {user: User}) => {
+export const User = ({user}: {user: UserT}) => {
   return (
     <div className={styles.user}>
         <div className={styles.position}>{user.position}°</div>

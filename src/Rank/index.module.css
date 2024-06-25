@@ -28,8 +28,18 @@
     overflow-x: hidden;
 
     gap: 8px;
+
+    z-index: 2;
 }
 
 .rank::-webkit-scrollbar {
     all: unset;
+}
+
+@media only screen and (max-width: 700px){
+    #h1_rank {
+        font-size: 25vw;
+        width: auto;
+    }
+    
 }
