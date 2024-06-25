@@ -18,8 +18,7 @@ import axios from 'axios';
 import './App.css'
 
 function App() {
-  const [cookies, setCookie] = useCookies(['id']);
-
+  const [setCookie] = useCookies(['id']);
   
 
   const time = new Date()
