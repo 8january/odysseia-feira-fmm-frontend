@@ -46,12 +46,12 @@ function App() {
     try {
       //https://odysseia-feira-fmm-backend-production.up.railway.app/user
       //https://b272-2804-18-688d-c55a-246c-df23-efca-8fc4.ngrok-free.app/user
-      const { data } = await axios.post("https://odysseia-feira-fmm-backend-production.up.railway.app/user", user_data, {
+      const { data } = await axios.post("https://odysseia-feira-fmm-backend.onrender.com/user", user_data, {
         method: 'POST',
         withCredentials: true,
       })
 
-      const {data: rankData} = await axios.get("https://odysseia-feira-fmm-backend-production.up.railway.app/rank", {
+      const {data: rankData} = await axios.get("https://odysseia-feira-fmm-backend.onrender.com/rank", {
         method: 'GET',
         withCredentials: true
       })
