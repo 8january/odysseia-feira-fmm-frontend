@@ -12,52 +12,52 @@ type question = {
 
 export const questions: question[] = [
     {
-        description: 'Qual é a capital do Brasil?',
+        description: 'Na Grécia Antiga, as principais cidades-estado foram?',
         answers: [
-            { id: 1, description: 'São Paulo', correct: false },
-            { id: 2, description: 'Rio de Janeiro', correct: false },
-            { id: 3, description: 'Brasília', correct: true },
-            { id: 4, description: 'Belo Horizonte', correct: false }
+            { id: 1, description: 'Babilônia e Atenas.', correct: false },
+            { id: 2, description: 'Esparta e Roma.', correct: false },
+            { id: 3, description: 'Babilônia e Esparta.', correct: false },
+            { id: 4, description: 'Atenas e Esparta.', correct: true }
         ],
-        correctAnswer: 3
+        correctAnswer: 4
     },
     {
-        description: 'Qual é o maior país do mundo?',
+        description: 'A história da Grécia antiga está dividida em 4 períodos que se estende do século XX ao século IV a.C.. São eles:',
         answers: [
-            { id: 1, description: 'Rússia', correct: true },
-            { id: 2, description: 'Canadá', correct: false },
-            { id: 3, description: 'China', correct: false },
-            { id: 4, description: 'Estados Unidos', correct: false }
-        ],
-        correctAnswer: 1
-    },
-    {
-        description: 'Qual é a montanha mais alta do mundo?',
-        answers: [
-            { id: 1, description: 'Monte Everest', correct: true },
-            { id: 2, description: 'K2', correct: false },
-            { id: 3, description: 'Kangchenjunga', correct: false },
-            { id: 4, description: 'Lhotse', correct: false }
+            { id: 1, description: 'pré-homérico, homérico, arcaico e clássico.', correct: true },
+            { id: 2, description: 'greco-romano, dórico, homérico, clássico.', correct: false },
+            { id: 3, description: 'dórico, ateniense, clássico e helenístico.', correct: false },
+            { id: 4, description: 'helenístico, homérico, ateniense e clássico.', correct: false }
         ],
         correctAnswer: 1
     },
     {
-        description: 'Qual é o rio mais longo do mundo?',
+        description: 'A Guerra do Peloponeso foi uma guerra civil que ocorreu na Grécia Antiga entre 431 e 404 a.C. Esse conflito militar durou 27 anos e terminou com a vitória de:',
         answers: [
-            { id: 1, description: 'Nilo', correct: true },
-            { id: 2, description: 'Amazonas', correct: false },
-            { id: 3, description: 'Yangtze', correct: false },
-            { id: 4, description: 'Mississippi', correct: false }
+            { id: 1, description: 'Creta', correct: false },
+            { id: 2, description: 'Esparta', correct: true },
+            { id: 3, description: 'Tebas', correct: false },
+            { id: 4, description: 'Atenas', correct: false }
         ],
-        correctAnswer: 1
+        correctAnswer: 2
     },
     {
-        description: 'Qual é o maior oceano do mundo?',
+        description: 'Preencha a lacuna: A __________ foi um regime político criado e adotado em Atenas, no período da Grécia Antiga.',
         answers: [
-            { id: 1, description: 'Pacífico', correct: true },
-            { id: 2, description: 'Atlântico', correct: false },
-            { id: 3, description: 'Índico', correct: false },
-            { id: 4, description: 'Ártico', correct: false }
+            { id: 1, description: 'Ática', correct: false },
+            { id: 2, description: 'Democracia', correct: true },
+            { id: 3, description: 'Ditadura', correct: false },
+            { id: 4, description: 'Monarquia', correct: false }
+        ],
+        correctAnswer: 2
+    },
+    {
+        description: '(UEMT) O enfraquecimento das cidades gregas, após a Guerra do Peloponeso (431-404 a. C.), possibilitou a conquista da Grécia pelos:',
+        answers: [
+            { id: 1, description: 'Bizantinos.', correct: false },
+            { id: 2, description: 'Assírios.', correct: false },
+            { id: 3, description: 'Hititas.', correct: false },
+            { id: 4, description: 'Macedônios.', correct: true }
         ],
         correctAnswer: 1
     }
