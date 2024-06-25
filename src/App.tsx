@@ -11,11 +11,17 @@ import { useStopwatch } from 'react-timer-hook'
 
 import { questions } from './inMemory/data'
 
+import { useCookies } from 'react-cookie';
+
 import axios from 'axios';
 
 import './App.css'
 
 function App() {
+  const [cookies, setCookie] = useCookies(['id']);
+
+  
+
   const time = new Date()
   time.setSeconds(time.getSeconds() + (25 * 60))
 
@@ -39,11 +45,30 @@ function App() {
     };
 
     try {
-      const { data } = await axios.post("https://odysseia-feira-fmm-backend.onrender.com/user", user_data, {
+      //https://odysseia-feira-fmm-backend-production.up.railway.app/user
+      //https://b272-2804-18-688d-c55a-246c-df23-efca-8fc4.ngrok-free.app/user
+      const { data } = await axios.post("https://b272-2804-18-688d-c55a-246c-df23-efca-8fc4.ngrok-free.app/user", user_data, {
         method: 'POST',
         withCredentials: true,
       })
+
+      const {data: rankData} = await axios.get("https://b272-2804-18-688d-c55a-246c-df23-efca-8fc4.ngrok-free.app/rank", {
+        method: 'GET',
+        withCredentials: true
+      })
+      
+      const fullData = [ ...rankData]
+            
+      console.log("FULL DATA: ", fullData)
+
+      console.log('COOKIE ID', data?.user?._id)
+      setCookie('id', data?.user?._id, { path: '/' });
+      
+      localStorage.setItem('id', (data?.user?._id))
+      localStorage.setItem('users', JSON.stringify(fullData))
+
       console.log(data);
+
     } catch (error) {
       console.error(error);
     }
