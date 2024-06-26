@@ -11,6 +11,8 @@
 .app {
   width: 100vw;
   height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
 
   z-index: 2;
 
@@ -89,6 +91,7 @@
 }
 
 #info {
+  z-index: 3;
   background-color: white;
 
   width: 50vw;
@@ -185,6 +188,7 @@ h3 {
 }
 
 .question-content p {
+  font-size: 48px;
   height: 50%;
   align-self: flex-start;
 }
@@ -254,6 +258,7 @@ h1 {
 
   overflow: hidden;
 
+  z-index: 3;
 }
 
 .points h1 {
@@ -300,6 +305,8 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  z-index: 3;
 }
 
 #points a {
@@ -333,12 +340,8 @@ h1 {
 #a-2,
 #a-3,
 #a-4 {
-  position: absolute;
-
-  z-index: 1;
-
-  width: 250px;
-  height: auto;
+  position: fixed;
+  /* Mantenha as outras propriedades */
 }
 
 #a-1 {
@@ -370,6 +373,10 @@ h1 {
 }
 
 @media only screen and (max-width: 700px) {
+  .user input {
+    width: 75%;
+  }
+
   #rs {
     display: none;
   }
@@ -414,6 +421,10 @@ h1 {
     bottom: -16px;
   }
 
+  .question-content p {
+    font-size: 24px;
+  }
+
   h3 {
     margin-left: 16px;
   }
@@ -432,5 +443,45 @@ h1 {
   .question-content .answers button {
     width: 90%;
     height: 20%;
+
+    font-size: 16px;
+  }
+
+  .points h1 {
+    font-size: 72px;
+    width: auto;
+  }
+
+  #points h2 {
+    font-size: 56px;
+    width: auto;
+  }
+
+  #a-1 {
+    left: -12.5%;
+    top: -9.25%;
+  
+    width: 50vw;
+  }
+  
+  #a-2 {
+    right: -5%;
+    top: -5%;
+  
+    width: 62.5vw;
+  }
+  
+  #a-3 {
+    left: -17.5%;
+    bottom: 2.5%;
+  
+    width: 40vw;
+  }
+  
+  #a-4 {
+    bottom: -5%;
+    right: -17.5%;
+  
+    width: 40vw;
   }
 }

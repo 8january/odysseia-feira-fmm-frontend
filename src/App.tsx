@@ -11,15 +11,15 @@ import { useStopwatch } from 'react-timer-hook'
 
 import { questions } from './inMemory/data'
 
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 
 import axios from 'axios';
 
 import './App.css'
 
 function App() {
-  const [cookies, setCookie] = useCookies(['id']);
-  console.log(cookies['id'])
+  // const [cookies, setCookie] = useCookies(['id']);
+  // console.log(cookies['id'])
 
   const time = new Date()
   time.setSeconds(time.getSeconds() + (25 * 60))
@@ -32,6 +32,7 @@ function App() {
   const [name, setName] = useState('user')
 
   const [correct, setCorrect] = useState(0)
+  const [error, setError] = useState<string>("")
   const { totalSeconds, seconds: watchSeconds, minutes: watchMinutes, start: watchStart, pause: watchPause } = useStopwatch({ autoStart: false })
 
   async function sendData() {
@@ -44,32 +45,39 @@ function App() {
     };
 
     try {
-      //https://odysseia-feira-fmm-backend-production.up.railway.app/user
-      //https://b272-2804-18-688d-c55a-246c-df23-efca-8fc4.ngrok-free.app/user
       const { data } = await axios.post("https://odysseia-feira-fmm-backend.onrender.com/user", user_data, {
         method: 'POST',
         withCredentials: true,
-      })
+      });
 
-      const {data: rankData} = await axios.get("https://odysseia-feira-fmm-backend.onrender.com/rank", {
-        method: 'GET',
-        withCredentials: true
-      })
-      
-      const fullData = [ ...rankData]
-            
-      console.log("FULL DATA: ", fullData)
-
-      console.log('COOKIE ID', data?.user?._id)
-      setCookie('id', data?.user?._id, { path: '/' });
-      
-      localStorage.setItem('id', (data?.user?._id))
-      localStorage.setItem('users', JSON.stringify(fullData))
-
+      localStorage.setItem('id', (data?.user?._id));
       console.log(data);
-
+      return data;
     } catch (error) {
       console.error(error);
+      throw error;
+    }
+  }
+
+  const handleGameEnd = async () => {
+    try {
+      await sendData();
+      // Aguarda 1 segundo para dar tempo ao servidor de processar os dados
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Busca o ranking atualizado
+      const { data: rankData } = await axios.get("https://odysseia-feira-fmm-backend.onrender.com/rank", {
+        method: 'GET',
+        withCredentials: true
+      });
+
+      // Armazena o ranking atualizado no localStorage
+      localStorage.setItem('users', JSON.stringify(rankData));
+
+      // Redireciona para a página de ranking
+      // window.location.href = '/rank';
+    } catch (error) {
+      console.error("Erro ao finalizar o jogo:", error);
     }
   };
 
@@ -78,12 +86,16 @@ function App() {
     return (<>
       <div className='user'>
         <h2> Informe seu nome para começar! </h2>
-        <input type='text' max={100} ref={nameRef} />
+        <input type='text' max={100} ref={nameRef} required />
+        {error && <p>{error}</p>}
         <button onClick={() => {
-          setStep(2)
-          watchStart()
-          setName(nameRef?.current?.value)
-          console.log(nameRef.current.value)
+
+          if (nameRef?.current?.value != '') {
+            setStep(2)
+            watchStart()
+            setName(nameRef?.current?.value)
+            console.log(nameRef.current.value)
+          }else setError('Preencha seu nome para continuar')
         }}> Próximo <MdOutlineKeyboardArrowRight /> </button>
       </div>
     </>)
@@ -163,6 +175,7 @@ function App() {
   }
 
   const result = () => {
+    // sendData()
 
     return (<>
       <h1>Parabéns</h1>
@@ -170,7 +183,7 @@ function App() {
         <h2>Pontuação:</h2>
         <p id='points-p'><span id='points-f'>{(correct * 15)}</span>/75 pts.</p>
         <p id='time-p'>Tempo: {watchMinutes < 10 ? "0" : ""}{watchMinutes}:{watchSeconds < 10 ? "0" : ""}{watchSeconds}</p>
-        <NavLink to={"/rank"} onClick={sendData}> Finalizar <MdOutlineKeyboardArrowRight /> </NavLink>
+        <NavLink to={"/rank"} onClick={handleGameEnd}> Finalizar <MdOutlineKeyboardArrowRight /> </NavLink>
       </div>
     </>)
   }

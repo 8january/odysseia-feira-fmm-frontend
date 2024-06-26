@@ -15,9 +15,9 @@ type UserT = {
 
 export const Rank = () => {
 
-  const usersR = JSON.parse((localStorage.getItem('users') as string))
-  console.log("USERRR:", usersR )
-  const [users, setUsers] = useState<UserT[]>(usersR)
+  // const usersR = JSON.parse((localStorage.getItem('users') as string))
+  // console.log("USERRR:", usersR )
+  const [users, setUsers] = useState<UserT[]>([])
 
   useEffect(() => {
 
@@ -30,17 +30,17 @@ export const Rank = () => {
           method: 'GET',
           withCredentials: true,
         })
-        console.log("DATA LENGTH", data?.length)
-        console.log("USERS LENGTH", users?.length)
+        // console.log("DATA LENGTH", data?.length)
+        // console.log("USERS LENGTH", users?.length)
         console.log('USERS', users)
 
         
-        if(users.length <= data?.length) {
-          setUsers(data)
-          return
-        }
+        // if(users.length <= data?.length) {
+          // setUsers(data)
+          // return
+        // }
 
-        setUsers([data])
+        setUsers(data)
         console.log(users)
 
       } catch (err) {
@@ -63,6 +63,7 @@ export const Rank = () => {
         {users?.map((user, index) => (
           <User key={user?._id} user={{ ...user, position: index + 1 }} />
         ))}
+        
       </div>
     </div>
   </>
