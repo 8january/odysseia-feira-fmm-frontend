@@ -59,6 +59,6 @@ export const questions: question[] = [
             { id: 3, description: 'Hititas.', correct: false },
             { id: 4, description: 'Macedônios.', correct: true }
         ],
-        correctAnswer: 1
+        correctAnswer: 4
     }
 ];

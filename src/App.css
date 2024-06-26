@@ -218,19 +218,19 @@ h3 {
 }
 
 .answers button:nth-child(1) {
-  border-left: 8px solid #0000FF;
+  border-left: 12px solid #134D86;
 }
 
 .answers button:nth-child(2) {
-  border-left: 8px solid #FF0000;
+  border-left: 12px solid #FE4725;
 }
 
 .answers button:nth-child(3) {
-  border-left: 8px solid #FFFF00;
+  border-left: 12px solid #44A411;
 }
 
 .answers button:nth-child(4) {
-  border-left: 8px solid #00FF00;
+  border-left: 12px solid #FFBE2F;
 }
 
 #mb {
@@ -370,6 +370,23 @@ h1 {
   right: -7.5%;
 
   width: 20vw;
+}
+
+.incorrect {
+  background-color: #FE4725;
+}
+
+.correct {
+  background-color: #44A411;
+}
+
+#h1-answer 
+{
+  font-size: 9vw;
+}
+
+#p-answer {
+  font-size: 3vw;
 }
 
 @media only screen and (max-width: 700px) {
