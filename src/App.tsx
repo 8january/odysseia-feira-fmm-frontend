@@ -75,7 +75,7 @@ function App() {
       localStorage.setItem('users', JSON.stringify(rankData));
 
       // Redireciona para a página de ranking
-      // window.location.href = '/rank';
+      window.location.href = '/rank';
     } catch (error) {
       console.error("Erro ao finalizar o jogo:", error);
     }
