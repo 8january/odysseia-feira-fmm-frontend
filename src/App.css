@@ -373,20 +373,52 @@ h1 {
 }
 
 .incorrect {
-  background-color: #FE4725;
+  background-color: #fa4f31;
 }
 
 .correct {
-  background-color: #44A411;
+  background-color: #4bac17;
 }
 
 #h1-answer {
   font-size: 9vw;
+  z-index: 2;
 }
 
 #p-answer {
   font-size: 3vw;
+  color: white;
+  z-index: 2;
 }
+
+button {
+  z-index: 2;
+}
+
+#uli {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  width: 100%;
+
+  gap: 12px;
+
+  position: absolute;
+  bottom: 0;
+}
+
+#uli button {
+  position: absolute;
+  bottom: 10%;
+}
+
+#uli img {
+  height: 60vh;
+}
+
+
 
 @media only screen and (max-width: 700px) {
   .user input {

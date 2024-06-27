@@ -38,7 +38,7 @@ function App() {
   const [isC2, setIsC2] = useState<boolean>(false)
 
   const { totalSeconds, seconds: watchSeconds, minutes: watchMinutes, start: watchStart, pause: watchPause } = useStopwatch({ autoStart: false })
-  const colors = ["Azul", "Vermelho", "Verde", "Amarelo"]
+const colors = ["Azul", "Vermelho", "Verde", "Amarelo"]
 
   async function sendData() {
     const user_data = {
@@ -91,18 +91,20 @@ function App() {
       isC2 ? setIsC('correct') : setIsC('incorrect')
     }
   }, [visible, isC2]);
-
+  
   const showAnswer = () => {
     console.log(colors[questions[q-1]?.correctAnswer - 1])
     console.log(questions[q-1]?.correctAnswer)
-    return (<>
-      <h1 id="h1-answer">{isC2 ? "Você acertou!" : "Você errou!"}</h1>
-      <p id='p-answer'>{isC2 ? "Ulisses está orgulhoso de você!" : `Resposta: alternativa ${colors[questions[q-1]?.correctAnswer - 1]}`}</p>
+    return (<div id='uli'>
+    <h1 id="h1-answer">{isC2 ? "Você acertou!" : "Você errou!"}</h1>
+    <p id='p-answer'>{isC2 ? "Ulisses está orgulhoso de você!" : `Resposta: alternativa ${colors[questions[q-1]?.correctAnswer - 1]}`}</p>
+    <img src={`/ulisses-${isC2 ? 1 : 2}.svg`} className="uli"/>
       <button onClick={() => {
         setVisible(false);
         setIsC2(false);
       }}> PROXIMO</button>
-    </>);
+      
+    </div>);
   }
 
   const user = () => {
@@ -164,53 +166,53 @@ function App() {
           <p>{questions[q]?.description}</p>
           <div className='answers'>
             <button onClick={() => {
-              setQ(prevQ => {
-                const newQ = prevQ + 1;
-                setVisible(true);
-                console.log("questao: ", prevQ, "resposta: ", questions[prevQ]?.answers[0]?.correct)
-                if (questions[prevQ]?.answers[0]?.correct) {
-                  setCorrect(correct + 1);
-                  setIsC2(true);
-                }
-                return newQ;
-              });
-            }}>{questions[q]?.answers[0]?.description}</button>
+  setQ(prevQ => {
+    const newQ = prevQ + 1;
+    setVisible(true);
+console.log("questao: ", prevQ, "resposta: ", questions[prevQ]?.answers[0]?.correct)
+    if (questions[prevQ]?.answers[0]?.correct) {
+      setCorrect(correct + 1);
+      setIsC2(true);
+    }
+    return newQ;
+  });
+}}>{questions[q]?.answers[0]?.description}</button>
             <button onClick={() => {
-              setQ(prevQ => {
-                const newQ = prevQ + 1;
-                setVisible(true);
-                console.log("questao: ", prevQ, "resposta: ", questions[prevQ]?.answers[1]?.correct)
+  setQ(prevQ => {
+    const newQ = prevQ + 1;
+    setVisible(true);
+    console.log("questao: ", prevQ, "resposta: ", questions[prevQ]?.answers[1]?.correct)
                 if (questions[prevQ]?.answers[1]?.correct) {
-                  setCorrect(correct + 1);
-                  setIsC2(true);
-                }
-                return newQ;
-              });
-            }}>{questions[q]?.answers[1].description}</button>
+      setCorrect(correct + 1);
+      setIsC2(true);
+    }
+    return newQ;
+  });
+}}>{questions[q]?.answers[1].description}</button>
             <button onClick={() => {
-              setQ(prevQ => {
-                const newQ = prevQ + 1;
-                setVisible(true);
-                console.log("questao: ", prevQ, "resposta: ", questions[prevQ]?.answers[2]?.correct)
+  setQ(prevQ => {
+    const newQ = prevQ + 1;
+    setVisible(true);
+    console.log("questao: ", prevQ, "resposta: ", questions[prevQ]?.answers[2]?.correct)
                 if (questions[prevQ]?.answers[2]?.correct) {
-                  setCorrect(correct + 1);
-                  setIsC2(true);
-                }
-                return newQ;
-              });
-            }}>{questions[q]?.answers[2].description}</button>
+      setCorrect(correct + 1);
+      setIsC2(true);
+    }
+    return newQ;
+  });
+}}>{questions[q]?.answers[2].description}</button>
             <button onClick={() => {
-              setQ(prevQ => {
-                const newQ = prevQ + 1;
-                setVisible(true);
-                console.log("questao: ", prevQ, "resposta: ", questions[prevQ]?.answers[3]?.correct)
+  setQ(prevQ => {
+    const newQ = prevQ + 1;
+    setVisible(true);
+    console.log("questao: ", prevQ, "resposta: ", questions[prevQ]?.answers[3]?.correct)
                 if (questions[prevQ]?.answers[3]?.correct) {
-                  setCorrect(correct + 1);
-                  setIsC2(true);
-                }
-                return newQ;
-              });
-            }}>{questions[q]?.answers[3].description}</button>
+      setCorrect(correct + 1);
+      setIsC2(true);
+    }
+    return newQ;
+  });
+}}>{questions[q]?.answers[3].description}</button>
           </div>
         </div>
       </div>
