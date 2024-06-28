@@ -129,7 +129,7 @@ const colors = ["Azul", "Vermelho", "Verde", "Amarelo"]
 
   const init = () => {
     return (<>
-      <h2>Vamos testar seus conhecimentos em história!</h2>
+      <h2>Vamos testar seus conhecimentos em História e Mitologia da Grécia Antiga!</h2>
       <button onClick={() => {
         setStep(1)
       }}> Começar </button>

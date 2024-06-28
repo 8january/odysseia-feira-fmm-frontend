@@ -39,3 +39,8 @@ h1 {
 h2 {
   z-index: 3;
 }
+
+button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}

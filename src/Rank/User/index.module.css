@@ -19,7 +19,7 @@
 }
 
 .user:nth-child(1) {
-    width: 100%;
+    width: 99%;
 }
 
 .user:nth-child(2) {
@@ -80,6 +80,11 @@
     width: 20%;
 
     align-self: flex-end;
+}
+
+.user:hover {
+    scale: 1.02;
+    border: 2px solid yellow;
 }
 
 @media only screen and (max-width: 700px) {

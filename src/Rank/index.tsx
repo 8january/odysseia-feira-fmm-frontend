@@ -3,6 +3,7 @@ import { User } from "./User"
 
 import styles from "./index.module.css"
 import axios from "axios"
+import { NavLink } from "react-router-dom";
 
 type UserT = {
   name: string
@@ -63,8 +64,8 @@ export const Rank = () => {
         {users?.map((user, index) => (
           <User key={user?._id} user={{ ...user, position: index + 1 }} />
         ))}
-        
       </div>
+        <NavLink to={"/"} id={styles.retornar}> Retornar </NavLink>
     </div>
   </>
   );
